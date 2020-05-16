@@ -1,37 +1,32 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Template - Watch</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
-
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <style>
-        input {
-            width: 250px;
-        }
+      input {
+        width: 250px;
+      }
     </style>
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-
-    
-    
-    
-
-    
-
-</head>
-<body>
-    <xmp>
+  </head>
+  <body>
+    <xmp
+>
         Vue 인스턴스 속성은 e dt mc^2 life cycel 이다.
         Vue 인스턴스 data 와 watch 속성을 학습한다.
 
@@ -45,10 +40,26 @@
 
         [참조] page 109~111
     </xmp>
-    <hr>
+    <hr />
     <div id="app">
-        <input type="text" name="message" id="message" v-model="message">
+      <input type="text" name="message" id="message" v-model="message" />
     </div>
-
-</body>
+    <button>message 값 바꾸려면 click</button>
+  </body>
 </html>
+<script>
+  var vm1 = new Vue({
+    el: "#app",
+    data: { message: "Hello Vue.js!!!" },
+
+    watch: {
+      //모니터링 하는 것
+      //데이터에 들어있는 프로퍼티 명을 정의 해줘야 함
+      //data: { message: 랑 같아야 한다는거임
+      message: function (data) {
+        data + "123";
+        console.log("message 값 바뀜", data);
+      },
+    },
+  });
+</script>
