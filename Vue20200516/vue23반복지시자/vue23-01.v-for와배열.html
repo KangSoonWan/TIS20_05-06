@@ -25,7 +25,11 @@
         }
     </style>
 
+ 
     <!-- vue 스크립트 플러그인 임포트   -->
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+        /* vue 플러그인 임포트 */
+    </script>
     
 
 </head>
@@ -56,6 +60,7 @@
         <p>
             <ul>
                 <li v-for="system in systems">{{ system }}</li>
+                <!-- javascript의 for in문이라고 생각하면 됨 -->
             </ul>
         </p>
         <p>
@@ -79,3 +84,24 @@
 </body>
 
 </html>
+
+<script>
+    new Vue({
+      el: "#app",
+      data: {
+        systems: ["android","IOS","windows"],
+        arr:[1,2,3,4,5]
+      },
+    });
+  new Vue({
+      el:"#app1",
+      data:{
+        options:[
+        { text: 'One', value: 'A' },
+            { text: 'Two', value: 'B' },
+            { text: 'Three', value: 'C' }
+        ]
+      },
+  })
+  
+  </script>

@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-<body>
+  </head>
+  <body>
     <xmp>
         기본 디렉티브
 
@@ -67,7 +68,8 @@
             v-bind:src      ==> $().attr("src") / $().attr("src", src값)
 
 
-        [10] v-model 디렉티브 : 양방향 데이터 바인딩. 입력 태그 5개만 바인딩.
+        [10] v-model 디렉티브 : 양방향 데이터 바인딩.
+         입력 태그 5개만 사용 가능 : input textarea select 이
             입력 태그를 개발할 때 사용. input, selection, textarea
             v-model 속성은 v-bind와 v-on의 기능의 조합으로 동작합니다.
             <input v-bind:value="inputText" v-on:input="updateInput">
@@ -84,5 +86,5 @@
 
         https://joshua1988.github.io/web-development/vuejs/v-model-usage/
     </xmp>
-</body>
+  </body>
 </html>

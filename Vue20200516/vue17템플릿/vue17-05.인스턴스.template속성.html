@@ -1,21 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Component Registration</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-<body>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
     <xmp>
         Vue 인스턴스의 template 속성에 대해서서 배운다.
             template 속성은 순수 HTML코드만을 가진다. 왜냐하면 문자열이기 때문.
@@ -34,25 +38,56 @@
 
         template 속성이 설정되면 엘리먼트의 innerHTML은 template 속성 설정값으로 치환(replace)된다
 
-        template 속성이 설정되지 않은 경우 data 속성의 값들로 치환된다.
+        template 속성이 설정되지 않은 경우 data 속성의 값들도 치환된다.
 
         [참조]page 52~61
     </xmp>
-    <hr>
+    <hr />
 
     <div id="app">
-        <h2>template 속성이 설정되지 않은 경우</h2>
-        <div style="border-bottom: 1px solid black;">첫번째 엘리먼트</div>
-        <div style="border-bottom: 1px solid black;">두번째 엘리먼트</div>
+      <h2>template 속성이 설정되지 않은 경우</h2>
+      <div style="border-bottom: 1px solid black;">첫번째 엘리먼트</div>
+      <div style="border-bottom: 1px solid black;">두번째 엘리먼트</div>
     </div>
 
-    <hr>
+    <hr />
 
     <div id="app2">
-        <h2>{{message1}}</h2>
-        <div style="border-bottom: 1px solid black;">첫번째 엘리먼트</div>
-        <div style="border-bottom: 1px solid black;">두번째 엘리먼트</div>
+      <h2>{{message1}}</h2>
+      <div style="border-bottom: 1px solid black;">첫번째 엘리먼트</div>
+      <div style="border-bottom: 1px solid black;">두번째 엘리먼트</div>
     </div>
-
-</body>
+  </body>
 </html>
+
+<script>
+  new Vue({
+    el: "#app",
+    data: {
+      message1: "템플릿 속성을 사용한 경우",
+    },
+    template: `
+            <div>
+                <h2>{{message1}}</h2>
+                <p>
+                template 속성이 설정되면 엘리먼트의 innerHTML은 template 속성 설정값으로 치환(replace)된다
+                </p>
+            </div>
+                `,
+  });
+  //템플릿으로 중괄호 2개 만들어도 data 내부 프로퍼티를 통해서 바꿀수 있음
+  new Vue({
+    el: "#app2",
+    data: {},
+    template: `
+          <p>
+              콧수염 괄호를 이용한 데이터 출력
+          <p>
+          `,
+  });
+  // 템플릿은 기존에 해당 템플릿에 들어있던게 없어진다
+  // ` 템플릿 리터럴   ===> ES6 부터 저거 사용 가능함
+  // String이 무조건 한줄이 아닌 들여쓰기 한것 그대로 적용돼서 나옴
+  // 리터럴 안쓰려면 <p>    /n        콧수염 괄호를 이용한 데이터 출력    /n    <p>
+  // 해야함
+</script>
