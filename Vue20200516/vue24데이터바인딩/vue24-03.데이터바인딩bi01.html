@@ -18,7 +18,9 @@
     </style>
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+        /* vue 플러그인 임포트 */
+      </script>
 
 </head>
 
@@ -109,4 +111,29 @@
     </div>
 </body>
 </html>
-
+
+<script>
+    new Vue({
+      el: "#simple1",
+      data: {
+        message : " <h2>첫번째 Vue.js입니다.</h2>"
+        
+      },
+    });
+
+    new Vue({
+      el: "#simple2",
+      data: {
+        message : " <h2>두번째 Vue.js입니다.</h2>"
+        
+      },
+    });
+
+    new Vue({
+      el: "#simple3",
+      data: {
+        message :" <h2>세번째 Vue.js입니다.</h2>"
+        
+      },
+    });
+  </script>
