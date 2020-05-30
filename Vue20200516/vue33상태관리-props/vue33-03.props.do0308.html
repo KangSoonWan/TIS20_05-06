@@ -1,23 +1,24 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Props Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
 
-    <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-
-<body>
+  <body>
     <xmp>
 
         부모 컴포넌트에서 자식 컴포넌트에게 데이터를 전달하는 방법에 대해서 배운다.
@@ -32,13 +33,31 @@
 
         [참조]page 51~61
     </xmp>
-    <img src="../images/components_parent_child.png" alt="" srcset="">
-    <hr>
+    <img src="../images/components_parent_child.png" alt="" srcset="" />
+    <hr />
     <div id="app">
-        <!-- 팁 : 오른쪽에서 왼쪽으로 속성을 읽으면 더 수월합니다. -->
-        <child-component v-bind:propsdata="message"></child-component>
+      <!-- 팁 : 오른쪽에서 왼쪽으로 속성을 읽으면 더 수월합니다. -->
+      <child-component v-bind:propsdata="message"></child-component>
     </div>
-
-</body>
-
+  </body>
 </html>
+<script>
+  Vue.component("child-component", {
+    props: ["propsdata"], // 이부분이 자식이니까 메세지 왼쪽 부분의 변수명을 넣는다.
+    data: function val() {
+      return {};
+    },
+    template: `
+        <div>
+        <p>{{ propsdata }}</p>
+        </div>
+                  `,
+  });
+
+  new Vue({
+    el: "#app",
+    data: {
+      message: ["메세지"], //오른쪽에 있는게 부모니까 부모닌 vue인스턴스의 데이터 안에 정의한다.
+    },
+  });
+</script>

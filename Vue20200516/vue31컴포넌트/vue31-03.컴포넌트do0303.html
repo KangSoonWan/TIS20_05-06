@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Component Registration</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-<body>
-    <xmp>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
+    <xmp
+>
         Vue 컴포넌트 만드는 방법을 배운다.
 
         컴포넌트는
@@ -32,17 +37,52 @@
             교재 page 52~61, 65
             https://kr.vuejs.org/v2/guide/components.html
     </xmp>
-    <hr>
+    <hr />
 
     <div id="app">
-        <h2>컴포넌트 등록</h2>
+      <h2>컴포넌트 등록</h2>
 
-        <global-component v-bind:propsdata="globalmsg1"></global-component>
-        <global-component v-bind:propsdata="globalmsg2"></global-component>
-        <hr>
-        <local-component v-bind:localmsg="localmsg1"></local-component>
-        <local-component v-bind:localmsg="localmsg2"></local-component>
+      <global-component v-bind:propsdata="globalmsg1"></global-component>
+      <global-component v-bind:propsdata="globalmsg2"></global-component>
+      <hr />
+      <local-component v-bind:localmsg="localmsg1"></local-component>
+      <local-component v-bind:localmsg="localmsg2"></local-component>
     </div>
-
-</body>
+  </body>
 </html>
+<script>
+  //전역 컴포넌트 만들기
+  Vue.component("global-component", {
+    props: ["propsdata"], // <global-component v-bind:propsdata <- 이부분임
+    data: function propsdata() {
+      return {};
+    },
+    template: `
+    <div>
+        </br>
+        </br>
+        <p>전역 컴포넌트가 등록되었습니다.</p>
+        <!--부모에게서 넘겨 받은 메세지 -->
+        {{ propsdata }}
+        <!--자식 부모로부터 넘겨받는 데이터가 각각 있는데 props는 부모로 부터 받는 데이터다 -->
+    </div>
+        `,
+    methods: {},
+    computed: {},
+    watch: {},
+  });
+  //Vue 인스턴스 === 부모 컴포넌트다.     아래 53p 참조
+  new Vue({
+    el: "#app",
+    data: {
+      globalmsg1: "인스턴스 에서 전역 컴포넌트로 넘겨진 메세지1",
+      globalmsg2: "인스턴스 에서 전역 컴포넌트로 넘겨진 메세지2",
+    },
+    components: {
+      "local-component": {
+        //컴포넌트 내용
+        template: "<div>지역 컴포넌트가 등록되었습니다.!</div>",
+      },
+    },
+  });
+</script>

@@ -1,27 +1,215 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="ko">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <style>
-        img { padding:5px; width:130px; height:130px; border:1px solid gray; }
+      img {
+        padding: 5px;
+        width: 130px;
+        height: 130px;
+        border: 1px solid gray;
+      }
     </style>
-</head>
-<body>
+  </head>
+  <body>
     <h2>&lt;img id="" src="" title="" alt="" /&gt;</h2>
 
     <h3>어트리뷰트 추가</h3>
     <img id="img1" src="../images/im1.jpg" title="im1.jpg" alt="im1.jpg" />
-    <img id="img2" />
-    <img id="img3" />
-    <img id="img4" />
-    <img id="img5" title="im5.jpg" />
+    <img id="img2" v-on:click="clickBindSrc1" v-bind:src="imagePath1" />
+    <img id="img3" v-on:click="clickBindSrc2" v-bind:src="imagePath2" />
+    <img id="img4" v-on:click="clickBindSrc3" v-bind:src="imagePath3" />
+    <img
+      id="img5"
+      title="im5.jpg"
+      v-on:click="clickBindSrc4"
+      v-bind:src="imagePath4"
+    />
 
     <h3>어트리뷰트 제거</h3>
-    <img id="img6" src="../images/im5.jpg" title="im5" alt="im5.jpg" />
-</body>
+    <img
+      id="img6"
+      src="../images/im5.jpg"
+      title="im5"
+      alt="im5.jpg"
+      v-on:click="clickBindSrc5"
+      v-bind:src="imagePath6"
+    />
+  </body>
 </html>
 
 <!-- 임포트 -->
-
+<!-- vue 스크립트 플러그인 임포트   -->
+<script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+  /* vue 플러그인 임포트 */
+</script>
+<script>
+  new Vue({
+    el: "#img1",
+    data: {
+      imagePath1: null,
+    },
+    methods: {
+      clickBindSrc1: function (event) {
+        this.$data.imagePath1 = "../images/im1.jpg";
+      },
+      clickBindSrc2: function (event) {
+        this.$data.imagePath2 = "../images/im2.jpg";
+      },
+      clickBindSrc3: function (event) {
+        this.$data.imagePath3 = "../images/im3.jpg";
+      },
+      clickBindSrc4: function (event) {
+        this.$data.imagePath4 = "../images/im4.jpg";
+      },
+      clickBindSrc5: function (event) {
+        this.$data.imagePath5 = "../images/im5.jpg";
+      },
+    },
+  });
+  new Vue({
+    el: "#img1",
+    data: {
+      imagePath1: null,
+      imagePath2: null,
+      imagePath3: null,
+      imagePath4: null,
+      imagePath5: null,
+    },
+    methods: {
+      clickBindSrc1: function (event) {
+        this.$data.imagePath1 = "../images/im1.jpg";
+      },
+      clickBindSrc2: function (event) {
+        this.$data.imagePath2 = "../images/im2.jpg";
+      },
+      clickBindSrc3: function (event) {
+        this.$data.imagePath3 = "../images/im3.jpg";
+      },
+      clickBindSrc4: function (event) {
+        this.$data.imagePath4 = "../images/im4.jpg";
+      },
+      clickBindSrc5: function (event) {
+        this.$data.imagePath5 = "../images/im5.jpg";
+      },
+    },
+  });
+  new Vue({
+    el: "#img2",
+    data: {
+      imagePath1: null,
+      imagePath2: null,
+      imagePath3: null,
+      imagePath4: null,
+      imagePath5: null,
+    },
+    methods: {
+      clickBindSrc1: function (event) {
+        this.$data.imagePath1 = "../images/im1.jpg";
+      },
+      clickBindSrc2: function (event) {
+        this.$data.imagePath2 = "../images/im2.jpg";
+      },
+      clickBindSrc3: function (event) {
+        this.$data.imagePath3 = "../images/im3.jpg";
+      },
+      clickBindSrc4: function (event) {
+        this.$data.imagePath4 = "../images/im4.jpg";
+      },
+      clickBindSrc5: function (event) {
+        this.$data.imagePath5 = "../images/im5.jpg";
+      },
+    },
+  });
+  new Vue({
+    el: "#img3",
+    data: {
+      imagePath1: null,
+      imagePath2: null,
+      imagePath3: null,
+      imagePath4: null,
+      imagePath5: null,
+    },
+    methods: {
+      clickBindSrc1: function (event) {
+        this.$data.imagePath1 = "../images/im1.jpg";
+      },
+      clickBindSrc2: function (event) {
+        this.$data.imagePath2 = "../images/im2.jpg";
+      },
+      clickBindSrc3: function (event) {
+        this.$data.imagePath3 = "../images/im3.jpg";
+      },
+      clickBindSrc4: function (event) {
+        this.$data.imagePath4 = "../images/im4.jpg";
+      },
+      clickBindSrc5: function (event) {
+        this.$data.imagePath5 = "../images/im5.jpg";
+      },
+    },
+  });
+  new Vue({
+    el: "#img4",
+    data: {
+      imagePath1: null,
+      imagePath2: null,
+      imagePath3: null,
+      imagePath4: null,
+      imagePath5: null,
+    },
+    methods: {
+      clickBindSrc1: function (event) {
+        this.$data.imagePath1 = "../images/im1.jpg";
+      },
+      clickBindSrc2: function (event) {
+        this.$data.imagePath2 = "../images/im2.jpg";
+      },
+      clickBindSrc3: function (event) {
+        this.$data.imagePath3 = "../images/im3.jpg";
+      },
+      clickBindSrc4: function (event) {
+        this.$data.imagePath4 = "../images/im4.jpg";
+      },
+      clickBindSrc5: function (event) {
+        this.$data.imagePath5 = "../images/im5.jpg";
+      },
+    },
+  });
+  new Vue({
+    el: "#img5",
+    data: {
+      imagePath1: null,
+      imagePath2: null,
+      imagePath3: null,
+      imagePath4: null,
+      imagePath5: null,
+    },
+    methods: {
+      clickBindSrc1: function (event) {
+        this.$data.imagePath1 = "../images/im1.jpg";
+      },
+      clickBindSrc2: function (event) {
+        this.$data.imagePath2 = "../images/im2.jpg";
+      },
+      clickBindSrc3: function (event) {
+        this.$data.imagePath3 = "../images/im3.jpg";
+      },
+      clickBindSrc4: function (event) {
+        this.$data.imagePath4 = "../images/im4.jpg";
+
+    },
+  });
+  new Vue({
+    el: "#img6",
+    data: {
+      imagePath6: "../images/im5.jpg",
+    },
+    methods: {
+      clickBindSrc5: function (event) {
+        this.$data.imagePath6 = null;
+      },
+    },
+  });
+</script>

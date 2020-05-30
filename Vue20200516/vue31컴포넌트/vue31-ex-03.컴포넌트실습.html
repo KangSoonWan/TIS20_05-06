@@ -60,20 +60,107 @@
         </nav>
     </header>
 
-    <div>
-        <article>
-            article
-                <figure>
-                    figure
-                </figure>
-        </article>
-        <aside>
-            aside
-        </aside>
-    </div>
-    <footer>
+    
+    <g-footer>
         footer
-    </footer>
+    </g-footer>
 <body>
 </body>
 </html>
+<script>
+    Vue.component("g-header", {
+      props: [""], // <global-component v-bind:propsdata <- 이부분임
+      data: function val() {
+        return {};
+      },
+      template: `
+      <g-header>
+        header
+        <g-nav>
+        </g-nav>
+    </g-header>
+                  `,
+    });
+  
+    Vue.component("g-nav", {
+      props: [""], // <global-component v-bind:propsdata <- 이부분임
+      data: function val() {
+        return {};
+      },
+      template: `
+        <g-nav>
+            nav
+        </g-nav>
+                  `,
+    });
+    Vue.component("g-div", {
+      props: [""], // <global-component v-bind:propsdata <- 이부분임
+      data: function val() {
+        return {};
+      },
+      template: `
+      <g-div>
+        <g-article>
+        </g-article>
+        <g-aside>
+            aside
+        </g-aside>
+    </g-div>
+                  `,
+    });
+  
+    Vue.component("g-article", {
+      props: [""], // <global-component v-bind:propsdata <- 이부분임
+      data: function val() {
+        return {};
+      },
+      template: `
+      <g-article>
+            article
+                <g-figure>
+                </g-figure>
+        </g-article>
+                  `,
+    });
+    Vue.component("g-figure", {
+      props: [""], // <global-component v-bind:propsdata <- 이부분임
+      data: function val() {
+        return {};
+      },
+      template: `
+                <g-figure>
+                    figure
+                </g-figure>
+                  `,
+    });
+    Vue.component("g-footer", {
+      props: [""], // <global-component v-bind:propsdata <- 이부분임
+      data: function val() {
+        return {};
+      },
+      template: `
+              <footer>
+                  Footer
+              </footer>
+                  `,
+    });
+    new Vue({
+      el: "#app",
+      data: {
+        arr: ["1", "2", "3"],
+      },
+      methods: {
+        clickAddBox: function (e) {
+          //Vue.set() 함수를 사용하거나
+          //this.set()
+          //스프레드 연산자 (배열타입)
+          Vue.set(
+            this.$data.arr,
+            this.$data.arr.length,
+            this.$data.arr.length + 1
+          );
+        },
+      },
+    });
+  </script>
+  

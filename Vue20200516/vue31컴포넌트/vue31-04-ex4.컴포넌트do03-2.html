@@ -1,38 +1,114 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Components Registration Quiz</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
-
+    <link rel="stylesheet" href="../css/reset.css" />
     <!-- vue 스크립트 플러그인 임포트   -->
-    
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
 
-</head>
-<body>
-    <xmp>
+  <body>
+    <xmp
+>
         Vue 컴포넌트 만드는 방법을 배운다.
 
         Vue의 전역 컴포넌트와 지역 컴포넌트 만드는 방법을 배운다.
 
         [참조]page 60~61
     </xmp>
-    <hr>
+    <hr />
     <div id="app">
-        <header>
-            <h3>{{ message }}</h3>
-        </header>
-        <!-- 실습 #3 - 전역 컴포넌트 등록을 위한 `todo-footer` 태그 추가 -->
-        <todo-footer></todo-footer>
-        <!-- 실습 #4 - 지역 컴포넌트 등록을 위한 `todo-list` 태그 추가 -->
-        <todo-list></todo-list>
+      <header>
+        <h3>{{ message }}</h3>
+      </header>
+      <!-- 실습 #3 - 전역 컴포넌트 등록을 위한 `todo-footer` 태그 추가 -->
+      <todo-footer></todo-footer>
+      <!-- 실습 #4 - 지역 컴포넌트 등록을 위한 `todo-list` 태그 추가 -->
+      <todo-list></todo-list>
     </div>
-</body>
-
+  </body>
 </html>
+<script>
+    //전역 컴포넌트 만들기
+    Vue.component("my-global-component", {
+        props: ["propsdata"], // <global-component v-bind:propsdata <- 이부분임
+        data: function propsdata() {
+            return {};
+        },
+        template: `
+      <div>
+          <h2>인스턴스 영역</h2>
+          </br>
+          </br>
+          전역 컴포넌트 입니다.
+      </div>
+          `,
+        methods: {},
+        computed: {},
+        watch: {},
+    });
+
+    var local = {
+        template: `
+      <div>
+
+          지역 컴포넌트 입니다.
+      </div>
+          `,
+    };
+
+    new Vue({
+        el: "#app",
+        data: {
+            message: "This is parents instance",
+        },
+        components: local,
+    },
+  });
+    //전역 컴포넌트 만들기
+    Vue.component("todo-footer", {
+        props: ["propsdata"], // <global-component v-bind:propsdata <- 이부분임
+        data: function propsdata() {
+            return {};
+        },
+        template: `
+      <div>
+          </br>
+          </br>
+          <p>Global child component.</p>
+          <!--부모에게서 넘겨 받은 메세지 -->
+          {{ propsdata }}
+          <!--자식 부모로부터 넘겨받는 데이터가 각각 있는데 props는 부모로 부터 받는 데이터다 -->
+      </div>
+          `,
+        methods: {},
+        computed: {},
+        watch: {},
+    });
+    //Vue 인스턴스 === 부모 컴포넌트다.     아래 53p 참조
+    new Vue({
+        el: "#app",
+        data: {
+            globalmsg1: "인스턴스 에서 전역 컴포넌트로 넘겨진 메세지1",
+            globalmsg2: "인스턴스 에서 전역 컴포넌트로 넘겨진 메세지2",
+        },
+        components: {
+            "local-component": {
+                //컴포넌트 내용
+                template: "<div>지역 컴포넌트가 등록되었습니다.!</div>",
+            },
+        },
+    });
+</script>
