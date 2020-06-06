@@ -1,24 +1,25 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Event Emit Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-
-</head>
-<body>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+  </head>
+  <body>
     <pre>
 
       Vue 컴포넌트 상태관리에 대해서 배운다.
@@ -37,14 +38,72 @@
 
       1. How to scorll at a bottom of textarea?
     </pre>
-    <hr>
+    <hr />
     <div id="app">
-        <child-component v-on:count-add="printTextAdd" v-on:count-clear="printTextClear"></child-component>
-        <hr>
-        <textarea name="txt-area" id="txt-area" cols="30" rows="10" v-model="message">
-
-        </textarea>
+      <child-component
+        v-on:count-add="printTextAdd"
+        v-on:count-clear="printTextClear"
+      ></child-component>
+      <hr />
+      <textarea
+        name="txt-area"
+        id="txt-area"
+        cols="30"
+        rows="10"
+        v-model="message"
+      >
+      </textarea>
     </div>
-
-</body>
+  </body>
 </html>
+<script>
+  Vue.component("child-component", {
+    props: {},
+    data: function () {
+      return {
+        count: 0,
+      };
+    },
+    template: `
+        <div>
+            <button v-on:click="addCount">addCount</button>
+            <button v-on:click="clearCount">clearCount</button>
+        </div>
+        `,
+    methods: {
+      //v-on했을때 메서드를 선언해줌 (v-on 이면 그때 동작하는 메서드를 선언해줘야함)
+      addCount: function (e) {
+        //메서드를 선언하면 e 에는 target data 가 넘어옴
+        this.$data.count++;
+        //this.$data면 컴포넌트의 데이터가 넘어오는 것임
+        //그러므로 this.$data.count 면 data: function () { 에 선언한
+        //count 값이 넘어 오는것임
+        //this.$data.addCount 면 function 이 넘어 오는것임 ==> 변수와 함수 모두 불러올 수 있음
+        //
+        this.$emit("count-add", this.$data.count);
+        //emit 은 param1 이 사용할 함수를 말하는 것임
+        //실제로 동작하는 함수는 count-add: "여기에" 명시된 함수가 동작함
+        //'여기에' 명시된 함수는
+      },
+      clearCount: function (e) {
+        this.$emit("count-clear", "");
+      },
+    },
+  });
+
+  new Vue({
+    el: "#app",
+    data: {
+      message: "message",
+    },
+    methods: {
+      printTextAdd: function (event) {
+        console.log("event==>" + event);
+        this.$data.message = this.$data.message + "\n" + event;
+      },
+      printTextClear: function (event) {
+        this.$data.message = event;
+      },
+    },
+  });
+</script>

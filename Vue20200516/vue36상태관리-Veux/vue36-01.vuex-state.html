@@ -1,25 +1,29 @@
 <!DOCTYPE html>
 <html>
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vuex Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-    
-    
-    
-</head>
+    <script src="https://unpkg.com/vue@2.5.16/dist/vue.js">
+      /* vue 플러그인 임포트 */
+    </script>
+    <script src="https://unpkg.com/vuex@3.3.0/dist/vuex.js">
+      /* vuex 플러그인 임포트 */
+    </script>
+  </head>
 
-<body>
+  <body>
     <pre>
 
       1. Vuex란?
@@ -52,13 +56,73 @@
        . state : 컴포넌트 간에 공유할 data
        . getter:
     </pre>
-    <hr>
+    <hr />
     <div id="app">
-        <h1>{{header}}</h1>
-        <h2>{{welcome}}</h2>
-        <h3>{{counter}}</h3>
-        <button @click="increment">나를 눌러줘</button>
+      <h1>{{header}}</h1>
+      <h2>{{welcome}}</h2>
+      <h3>{{counter}}</h3>
+      <button v-on:click="increment">나를 눌러줘</button>
     </div>
-</body>
-
+  </body>
 </html>
+<script>
+  //Vuex 인스턴스 생성
+  //마트에 가서 물건을 산다고 생각한다.
+  //입구를 들어간다 = action
+  // 물건을 사 = mutation
+  // 계산 state
+  // 나온다 = getter
+  var store = new Vuex.Store({
+    actions: {
+      increment: function (context, playload) {
+        //비동기 처리
+        //mutaions호출
+        window.setTimeout(function (mutations, playload) {
+          //mutaions 호출
+          mutations.commit("increment", playload);
+          //pram1 은인자 2 는 값
+        }, 1000); //1초 = 1000밀리세컨 지연
+      },
+    },
+    mutations: {
+      increment: function (state, playload) {
+        //state저장
+        state.count = state.count + playload;
+      },
+    },
+    state: {
+      //변수 선언
+      msg: "HelloWorld",
+      count: 0,
+    },
+    getters: {
+      //state변수에 대한 getter함수 만들기
+      //이름을 똑같이 만들면 헷갈리지 않는다.
+      //위에 선언한 state 옵젝전체가 들어온다고 생각하면 됨
+      //geter는 getter 함수를 만들기 위한 목적밖에 없음
+      msg: function (state) {
+        return state.msg;
+      },
+
+      count: function (state) {
+        return state.count;
+      },
+    },
+  });
+
+  //Vue인스턴스
+  new Vue({
+    el: "#app",
+    data: {
+      header: "Vuex 사용 앱",
+    },
+    methods: {
+      increment: function () {
+        //스토어에 있는 값을 갖고 오고 싶으면 dipatch?????
+        //갖고 오고싶은거야 뭘 하고 싶은거야....?
+        //store.dispatch("action명", 값);
+        store.dispatch("increment", 10);
+      },
+    },
+  });
+</script>

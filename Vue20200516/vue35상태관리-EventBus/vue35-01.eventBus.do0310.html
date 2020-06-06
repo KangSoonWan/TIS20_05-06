@@ -1,21 +1,22 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vue Event Bus Sample</title>
 
     <!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
+    />
 
     <!-- CSS import -->
-    <link rel="stylesheet" href="../css/reset.css">
+    <link rel="stylesheet" href="../css/reset.css" />
 
     <!-- vue 스크립트 플러그인 임포트   -->
-    
-
-</head>
-<body>
+  </head>
+  <body>
     <pre>
 
        Vue의 상태관리 방법을 배운다.
@@ -23,10 +24,27 @@
 
        [참조]page 62~75
     </pre>
-    <hr>
+    <hr />
     <div id="app">
-        <child-component></child-component>
+      <child-component></child-component>
     </div>
-
-</body>
+  </body>
 </html>
+<script>
+  var eventBus = new Vue();
+  eventBus.$on("triggerEventBus", function (value) {
+    console.log("이벤트 값", "");
+  });
+
+  Vue.component:("child-component", {
+    template: `
+    <div>
+    </div>
+    `,
+    methods: {
+      showLog: function(e){
+        eventBus.$emit("triggerEventBus", eventBus)
+      }
+    },
+  })
+</script>
