@@ -1,30 +1,86 @@
 <!DOCTYPE html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta http-equiv="X-UA-Compatible" content="ie=edge" />
     <title>Document</title>
 
-    <link rel="stylesheet" href="../css/reset.css"/>
-</head>
+    <link rel="stylesheet" href="../css/reset.css" />
+  </head>
 
-<body>
+  <body>
     <xm>
-
-    <img src="../images/binaryclock.png" alt="">
-
+      <img src="../images/binaryclock.png" alt="" />
     </xm>
-    <hr>
+    <hr />
 
     <div id="app"></div>
-</body>
-
+  </body>
 </html>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react/16.12.0/umd/react.development.js"
+>
+  /* import { React} from 'react'; */
+</script>
+<script
+  src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/16.11.0/umd/react-dom.development.js"
+>
+  /* import { ReactDOM } from 'react-dom'; */
+</script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/babel-standalone/6.26.0/babel.js"></script>
 
-<!-- react 플러그인 include   -->
-<!-- 주의: 사이트를 배포할 때는 "development.js"를 "production.min.js"로 대체하세요. -->
+<script type="text/babel">
+  //1->01로 만드는 함수
+  const z2 = function (val) {
+    const str = "00" + val;
+    return str.substr(str.length - 2, 2); //001 =>01, 0011==>11
+  };
 
+  window.setInterval(function (e) {
+    const now = new Date();
 
-
+    //시분초 구하기
+    const hh = z2(now.getHours()); //1=>01  11=>11
+    const mm = z2(now.getMinutes()); //1=>01  11=>11
+    const ss = z2(now.getSeconds()); //1=>01  11=>11
+
+    //2진수 시계
+    const lines = []; //jsx가 담기는 배열. 6행 4열
+    const binStr = hh + mm + ss;
+
+    /*
+    11:03:49 ==> 110349
+
+    1. 문자열을 숫자로 만든다.,
+    2. 십진수를 이진수로 만든다 => 문자열 .toSttring
+    3. 끝부터 4개의 문자만 가져오기
+    4. 이진 숫자를 JSX로 만들고 배열에 추가한다.
+    */
+
+    for (let i = 0; i < binStr.length; i++) {
+      //문자를 숫자로 바꾼다. Number 생성자를 사용한다.
+      const v = Number(binStr.substr(i, 1));
+      const bin2 = "0000" + v.toString(2);
+      const bin3 = bin2.substr(bin2.length - 4, 4);
+      for (let j = 0; j < bin3.length; j++) {
+        if (bin3.substr(j, 1) == "0") {
+          lines.push(<span key={i + "" + j}>○</span>);
+        } else {
+          lines.push(<span key={i + "" + j}>●</span>);
+        }
+      }
+      lines.push(<br key={i + "br"} />);
+    }
+    ReactDOM.render(
+      <div>
+        <div>
+          {}
+          {hh} : {mm} : {ss}
+        </div>
+        <div>{lines}</div>
+      </div>,
+      document.getElementById("app")
+    );
+  });
+</script>
